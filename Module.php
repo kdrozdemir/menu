@@ -1,6 +1,6 @@
 <?php
 
-namespace kouosl\sample;
+namespace kouosl\menu;
 use Yii;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
@@ -54,38 +54,20 @@ class Module extends \kouosl\base\Module
 
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['site/*'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'sourceLanguage' => 'en-US',
-            'basePath' => '@kouosl/sample/messages',
-            'fileMap' => [
-                'sample/sample' => 'sample.php',
-            ],
-        ];
+        Yii::$app->i18n->translations['menu/*'] = ['class' => 'yii\i18n\PhpMessageSource','sourceLanguage' => 'en-US','basePath' => '@kouosl/menu/messages','fileMap' => ['menu/menu' => 'menu.php',],];
     }
 
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('sample/' . $category, $message, $params, $language);
+        return Yii::t('menu/' . $category, $message, $params, $language);
     }
 
     public static function initRules(){
 
-        return $rules = [
-            [
-                'class' => 'yii\rest\UrlRule',
-                'controller' => [
-                    'sample/samples',
-                ],
-                'tokens' => [
-                    '{id}' => '<id:\\w+>'
-                ],
-                /*'patterns' => [
-                    'GET new-action' => 'new-action'
-                ]*/
-            ],
-
-        ] ;
+        return $rules = ['class' => 'yii\rest\UrlRule',
+'controller' => ['menu/menu',,'tokens' => ['{id}' => '<id:\\w+>'],/*'patterns' => [
+'GET new-action' => 'new-action'
+]*/],] ;
 
     }
 
